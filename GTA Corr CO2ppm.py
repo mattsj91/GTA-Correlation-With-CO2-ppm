@@ -1,35 +1,36 @@
-#import ing pandas, and coverting the tab delimited data to dataframes
+#importing pandas, and coverting the tab delimited data to dataframes
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
 #putting the column header names into variables
 l_cols = ['Year', 'ppm(CO2)']
-m_cols = ['Year', 'ppm(CO2)', 'Unc.']
+m_cols = ['Year', 'ppm(CO2)']
 n_cols = ['Annual Mean(GTA)','Year']
 
+
 #declaring file paths to three variables
-lawDome = "C:\\Users\\user\\Downloads\\LawDome.txt"
-mauna = "C:\\Users\\user\\Downloads\\\Mauna Loa TabDelim.txt"
-nasa = "C:\\Users\\user\\Downloads\\NASA TabDelim.txt"
+lawDome = "C:\\Users\\user\\Downloads\\GTA-Correlation-With-CO2-ppm-master\\GTA-Correlation-With-CO2-ppm-master\\LawDome.txt"
+mauna = "C:\\Users\\user\\Downloads\\GTA-Correlation-With-CO2-ppm-master\\GTA-Correlation-With-CO2-ppm-master\\Mauna Loa TabDelim.txt"
+nasa = "C:\\Users\\user\\Downloads\\GTA-Correlation-With-CO2-ppm-master\\GTA-Correlation-With-CO2-ppm-master\\NASA TabDelim.txt"
 
 #reading in the data files into pandas data frames
 LawD = pd.read_csv(lawDome, sep='\t', names=l_cols, usecols=range(2))
-maunaL = pd.read_csv(mauna, sep='\t', names=m_cols, usecols=range(3))
+maunaL = pd.read_csv(mauna, sep='\t', names=m_cols, usecols=range(2))
 nasag = pd.read_csv(nasa, sep='\t', names=n_cols, usecols=range(2))
 
 
 
 
 #converting columns in the dataframes to x and y variables i will use in scatter charts
-x_val1 = maunaL[[0]]
-y_val1 = maunaL[[1]]
+x_val1 = maunaL['Year']
+y_val1 = maunaL['ppm(CO2)']
 
-x_val2 = LawD[[0]]
-y_val2 = LawD[[1]]
+x_val2 = LawD['Year']
+y_val2 = LawD['ppm(CO2)']
 
-x_val3 = nasag[[1]]
-y_val3 = nasag[[0]]
+x_val3 = nasag['Year']
+y_val3 = nasag['Annual Mean(GTA)']
 
 plt.figure(figsize=(8, 5))
 fig, ax1 = plt.subplots()
